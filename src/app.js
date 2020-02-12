@@ -12,8 +12,12 @@ const koaStatic = require('koa-static')
 const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
 // 路由
+// views
 const index = require('./routes/index')
 const userViewRouter = require('./routes/view/user')
+// api
+const userAPIRouter = require('./routes/api/user')
+// error
 const errorViewRouter = require('./routes/view/error')
 
 // error handler
@@ -62,6 +66,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
+app.use(userAPIRouter.routes(), userAPIRouter.routes())
 app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由注册到最下面
 
