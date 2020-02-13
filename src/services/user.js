@@ -41,7 +41,7 @@ async function getUserInfo(userName, password) {
  * 
  * @param {string} userName 用户名
  * @param {string} password 密码
- * @param {number} userName 用户名
+ * @param {number} gender 性别
  * @param {string} userName 用户名
  */
 async function createUser({ userName, password, gender = 3, nickName }) {
