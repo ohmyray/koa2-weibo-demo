@@ -11,6 +11,7 @@ const koaStatic = require('koa-static')
 
 const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
+const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 // 路由
 // views
 const index = require('./routes/index')
@@ -41,7 +42,7 @@ app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
 
-app.keys = ['UI_password_8787#$']
+app.keys = [ SESSION_SECRET_KEY ]
 app.use(session({
   key: 'weibo.sid', // cookie name 默认是 `koa.sid`
   prefix: 'weibo:sess:', // redis key 的前缀，默认是`koa:sess:`
